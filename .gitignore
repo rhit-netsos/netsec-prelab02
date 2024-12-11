@@ -81,3 +81,4 @@ connect_*.sh
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
 n
+.cache/
