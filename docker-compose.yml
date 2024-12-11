@@ -1,5 +1,5 @@
 # set the name for the project
-name: template
+name: prelab02
 
 services:
   hostA:
@@ -12,6 +12,8 @@ services:
       - ALL
     volumes:
       - ./volumes:/volumes
+    sysctls:
+      - net.ipv4.ip_forward=0
     networks:
       local-net:
         ipv4_address: 10.10.0.4
@@ -38,6 +40,8 @@ services:
     networks:
       local-net:
         ipv4_address: 10.10.0.5
+    sysctls:
+      - net.ipv4.ip_forward=0
     command: >
       bash -c "
       groupadd -g ${GID} netsec_group &&
@@ -60,7 +64,10 @@ services:
       - ./volumes:/volumes
     networks:
       local-net:
-        ipv4_address: 10.10.0.13
+        ipv4_address: 10.10.0.10
+    sysctls:
+      - net.ipv4.ip_forward=0
+      - net.ipv4.icmp_echo_ignore_all=1
     command: >
       bash -c "
       groupadd -g ${GID} netsec_group &&
@@ -74,6 +81,7 @@ services:
 networks:
   local-net:
     name: local-net
+    internal: true
     ipam:
       config:
         - subnet: 10.10.0.0/24

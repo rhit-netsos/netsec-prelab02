@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+connect_*.sh
+
+.env
+
+*.bin
